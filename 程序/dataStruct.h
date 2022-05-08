@@ -15,6 +15,7 @@ extern int DISTANCE;
 
 typedef struct array{
 	int *arr;
+	//size:已有元素数量，也是当前空闲的第一个下标 
 	int size,maxCount;
 }array;
 typedef struct query{

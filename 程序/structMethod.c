@@ -29,7 +29,7 @@ array* initialArr(int size){
 query* initialQuery(int size) {
 	query* q;
 	size=max(32,size); 
-	//q=(query*)malloc(sizeof(int)*size*8);
+	q=(query*)malloc(sizeof(int)*size*8);
 	q->busRequest=initialArr(size);
 	q->noStopRequest=initialArr(size);
 	q->stationRequest=initialArr(size);
