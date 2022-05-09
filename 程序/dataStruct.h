@@ -9,30 +9,46 @@
 #define null NULL
 #define eof EOF 
 #define e97 10000007
+#define maxint 0x7fffffff; 
 extern int TOTAL_STATION;
 extern int STRATEGY;
 extern int DISTANCE;
+typedef struct node node;
 
-typedef struct array{
-	int *arr;
-	//size:å·²æœ‰å…ƒç´ æ•°é‡ï¼Œä¹Ÿæ˜¯å½“å‰ç©ºé—²çš„ç¬¬ä¸€ä¸ªä¸‹æ ‡ 
-	int size,maxCount;
-}array;
+typedef struct node{
+	//Á´±íÏÂÒ»¸ö½Úµã
+	node* next;
+	//±¾½ÚµãµÄÖµ
+	int value;
+}node;
+ 
 typedef struct query{
-	array *stationRequest,*noStopRequest,*busRequest;
+	//Ëù´æµÄÊı×ÖxÎªxÕ¾µãÓĞË³Ê±ÕëÇëÇó£»-yÎªyÕ¾µãÓĞÄæÊ±ÕëÇëÇó
+	node*  stationRequest;
+	//×î½üÒ»ÃëÄÚ£¬ÎŞ·¨Í£ÏÂÈ¥Âú×ãµÄÉÏ³µÇëÇó
+	node*  noStopRequest;
+	//³µÄÚµÄµ½Õ¾ÇëÇó
+	node*  busRequest;
+	//ÈıÕß¶ÔÓ¦µÄ½áÊø½Úµã£¬±ãÓÚ²åÈëĞÂ½ÚµãÊ±Ê¹ÓÃ
+	node *lasts,*lastn,*lastb;
 }query;
+
 typedef struct busInfo{
+	//µ±Ç°Ê±¼ä
+	int time;
+	//¹«½»³µµ±Ç°ÔËĞĞ·½Ïò
 	int direction;
+	//¹«½»³µµ±Ç°Î»ÖÃ
 	int position;
+	//¹«½»³µÊÇ·ñ¿ÉÒÔ×ªÏò
 	bool isLocked;
 }busInfo;
 
-array* initialArr(int size);
-query* initialQuery(int size);
-void grow(array* a);
-int get(array* a,int index);
-void add(array* a,int num);
-void set(array *a,int index,int num);
-void removeByIndex(array *a,int index);
-void freeArray(array* a);
+node* newNode(int value);
+query* newQuery();
+node* get(node* a,int index);
+void add(node* a,int index,int num);
+void set(node *a,int index,int num);
+void removeNode(node *a,int index);
+void freeNode(node* a);
 void freeQuery(query* q);
