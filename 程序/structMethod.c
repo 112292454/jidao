@@ -38,9 +38,9 @@ node* get(node* a, int index) {
     }
     return a;
 }
-// 在index后插入 num
+// 在index后插入 num；index从0开始 
 void add(node* a, int index, int num) {
-    a = get(a, index - 1);
+    a = get(a, index);
     node* temp = newNode(num);
     temp->next = a->next;
     a->next = temp;
@@ -53,7 +53,9 @@ void set(node* a, int index, int value) {
 // 删除a中index处元素
 void removeNode(node* a, int index) {
     a = get(a, index - 1);
-    a->next = a->next->next;
+    node* temp = a->next->next;
+    free(a->next); 
+    a->next = temp;
 }
 // 释放a后空间
 void freeNode(node* a) {
