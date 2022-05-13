@@ -23,6 +23,7 @@ query* newQuery() {
     return q;
 }
 
+
 // 下标从0开始 ,get(0)为首个元素，get(maxint)为最后一个元素
 node* get(node* a, int index) {
     for (int i = 0; i <= index; i++) {
