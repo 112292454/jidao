@@ -18,7 +18,6 @@ node* newNode(int value) {
 query* newQuery() {
     query* q;
     q = (query*)malloc(sizeof(int) * 32);
-    q->busRequest = newNode(0);
     q->noStopRequest = newNode(0);
     q->stationRequest = newNode(0);
     return q;
