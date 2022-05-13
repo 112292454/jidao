@@ -71,6 +71,5 @@ void freeNode(node* a) {
 void freeQuery(query* q) {
     freeNode(q->stationRequest);
     freeNode(q->noStopRequest);
-    freeNode(q->busRequest);
     free(q);
 }
