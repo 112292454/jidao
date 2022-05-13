@@ -29,7 +29,7 @@ typedef struct node {
 } node;
 
 typedef struct query {
-    //所存的数字x为x站点有顺时针请求；-y为y站点有逆时针请求
+    //所存的数字x
     node* stationRequest;
     //最近一秒内，无法停下去满足的上车请求
     node* noStopRequest;
@@ -44,10 +44,8 @@ typedef struct busInfo {
     int direction;
     //公交车当前位置
     int position;
-    //目标站点，仅当到达此点之后direct变为0 
+    //目标站点，仅当到达此点之后direct变为-1
     int target;
-	 
-    
 } busInfo;
 
 node* newNode(int value);
