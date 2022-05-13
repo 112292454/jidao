@@ -15,11 +15,17 @@ extern int STRATEGY;
 extern int DISTANCE;
 typedef struct node node;
 
+//策略3=策略2+
+//“可以接不同方向的途中”+
+//“选定一个方向，每次按这个方向去找，只有该方向最短的距离都太长才会掉头” 
+//“而策略二每次到达之后直接看距离最近的” 
 typedef struct node {
     //链表下一个节点
     node* next;
     //本节点的值
     int value;
+    //该节点请求的方向，1为顺时针，-1为逆时针，0为乘客到站请求（即顺逆都可以停） 
+    int  direct;
 } node;
 
 typedef struct query {
@@ -27,21 +33,21 @@ typedef struct query {
     node* stationRequest;
     //最近一秒内，无法停下去满足的上车请求
     node* noStopRequest;
-    //车内的到站请求
-    node* busRequest;
     //三者对应的结束节点，便于插入新节点时使用
-    node *lasts, *lastn, *lastb;
+    node *lasts, *lastn;
 } query;
 
 typedef struct busInfo {
     //当前时间
     int time;
-    //公交车当前运行方向
+    //公交车当前运行方向，1为顺时针，-1为逆时针，0为停站，仅当0可以转向 
     int direction;
     //公交车当前位置
     int position;
-    //公交车是否可以转向
-    bool isLocked;
+    //目标站点，仅当到达此点之后direct变为0 
+    int target;
+	 
+    
 } busInfo;
 
 node* newNode(int value);
