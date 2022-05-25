@@ -2,7 +2,7 @@
 int TOTAL_STATION=5;
 int STRATEGY=1;
 int DISTANCE=2;
-int main(){
+int main(void){
 	//读入配置文件 
 	FILE *fp = NULL;
 	char buff[255];

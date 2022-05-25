@@ -1,26 +1,10 @@
 #include "dataStruct.h"
-int main() {
-    query* q = newQuery();
-    add(q->noStopRequest, 0, 1);
-    add(q->noStopRequest, 99, 555);
-    printf("%d", get(q->noStopRequest, 998)->value);
-
-    return 0;
-}
-
 node* newNode(int value) {
     node* a;
     a = (node*)malloc(sizeof(node));
     a->next = null;
     a->value = value;
     return a;
-}
-query* newQuery() {
-    query* q;
-    q = (query*)malloc(sizeof(int) * 32);
-    q->noStopRequest = newNode(0);
-    q->stationRequest = newNode(0);
-    return q;
 }
 
 
@@ -66,10 +50,4 @@ void freeNode(node* a) {
         a = temp;
     }
     free(a);
-}
-// 释放链表q
-void freeQuery(query* q) {
-    freeNode(q->stationRequest);
-    freeNode(q->noStopRequest);
-    free(q);
 }
