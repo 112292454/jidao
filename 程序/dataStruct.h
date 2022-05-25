@@ -9,50 +9,42 @@
 #define null NULL
 #define eof EOF
 #define e97 10000007
-#define maxint 0x7fffffff;
+#define maxint 0x7fffffff
 extern int TOTAL_STATION;
 extern int STRATEGY;
 extern int DISTANCE;
 typedef struct node node;
 
-//²ßÂÔ3=²ßÂÔ2+
-//¡°¿ÉÒÔ½Ó²»Í¬·½ÏòµÄÍ¾ÖĞ¡±+
-//¡°Ñ¡¶¨Ò»¸ö·½Ïò£¬Ã¿´Î°´Õâ¸ö·½ÏòÈ¥ÕÒ£¬Ö»ÓĞ¸Ã·½Ïò×î¶ÌµÄ¾àÀë¶¼Ì«³¤²Å»áµôÍ·¡± 
-//¡°¶ø²ßÂÔ¶şÃ¿´Îµ½´ïÖ®ºóÖ±½Ó¿´¾àÀë×î½üµÄ¡± 
 typedef struct node {
-    //Á´±íÏÂÒ»¸ö½Úµã
+    //é“¾è¡¨ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
     node* next;
-    //±¾½ÚµãµÄÖµ
+    //æœ¬èŠ‚ç‚¹çš„å€¼
     int value;
-    //¸Ã½ÚµãÇëÇóµÄ·½Ïò£¬1ÎªË³Ê±Õë£¬-1ÎªÄæÊ±Õë£¬0Îª³Ë¿Íµ½Õ¾ÇëÇó£¨¼´Ë³Äæ¶¼¿ÉÒÔÍ££© 
+    //è¯¥èŠ‚ç‚¹è¯·æ±‚çš„æ–¹å‘ï¼Œ1ä¸ºé¡ºæ—¶é’ˆï¼Œ-1ä¸ºé€†æ—¶é’ˆï¼Œ0ä¸ºä¹˜å®¢åˆ°ç«™è¯·æ±‚ï¼ˆå³é¡ºé€†éƒ½å¯ä»¥åœï¼‰ 
     int  direct;
 } node;
 
-typedef struct query {
-    //Ëù´æµÄÊı×Öx
-    node* stationRequest;
-    //×î½üÒ»ÃëÄÚ£¬ÎŞ·¨Í£ÏÂÈ¥Âú×ãµÄÉÏ³µÇëÇó
-    node* noStopRequest;
-    //ÈıÕß¶ÔÓ¦µÄ½áÊø½Úµã£¬±ãÓÚ²åÈëĞÂ½ÚµãÊ±Ê¹ÓÃ
-    node *lasts, *lastn;
-} query;
-
 typedef struct busInfo {
-    //µ±Ç°Ê±¼ä
+    //å½“å‰æ—¶é—´
     int time;
-    //¹«½»³µµ±Ç°ÔËĞĞ·½Ïò£¬1ÎªË³Ê±Õë£¬-1ÎªÄæÊ±Õë£¬0ÎªÍ£Õ¾£¬½öµ±0¿ÉÒÔ×ªÏò 
+    //å…¬äº¤è½¦å½“å‰è¿è¡Œæ–¹å‘ï¼Œ1ä¸ºé¡ºæ—¶é’ˆï¼Œ-1ä¸ºé€†æ—¶é’ˆï¼Œ0ä¸ºåœç«™ï¼Œä»…å½“0å¯ä»¥è½¬å‘ 
     int direction;
-    //¹«½»³µµ±Ç°Î»ÖÃ
+    //å…¬äº¤è½¦å½“å‰ä½ç½®
     int position;
-    //Ä¿±êÕ¾µã£¬½öµ±µ½´ï´ËµãÖ®ºódirect±äÎª-1
+    //ç›®æ ‡ç«™ç‚¹ï¼Œä»…å½“åˆ°è¾¾æ­¤ç‚¹ä¹‹ådirectå˜ä¸º0ï¼Œéšç­–ç•¥ä¸åŒï¼Œè®¾ç½®ä¸åŒçš„æ ‡è¯†å«ä¹‰ 
     int target;
 } busInfo;
 
-node* newNode(int value);
-query* newQuery();
-node* get(node* a, int index);
-void add(node* a, int index, int num);
-void set(node* a, int index, int num);
-void removeNode(node* a, int index);
-void freeNode(node* a);
-void freeQuery(query* q);
+int main();
+bool input(node*);
+void output(node*,busInfo*);
+void run(node*,busInfo*);
+void fcfs(node*, busInfo*);
+void sstf(node*, busInfo*);
+void scan(node*, busInfo*);
+node* newNode(int);
+node* get(node*, int);
+void add(node*, int, node*);
+void set(node*, int, int);
+void removeNode(node*, int);
+void freeNode(node*);
